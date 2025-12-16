@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Code2, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import profileImage from "@/assets/michael-profile.jpg";
 
 const HeroSection = () => {
   return (
@@ -96,10 +97,14 @@ const HeroSection = () => {
               <div className="absolute inset-8 rounded-full border-2 border-accent/10" />
               <div className="absolute inset-16 rounded-full bg-accent/5" />
               
-              {/* Center Icon */}
+              {/* Profile Image */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="p-8 rounded-2xl bg-primary shadow-custom-xl">
-                  <Code2 className="w-16 h-16 text-primary-foreground" />
+                <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-accent shadow-custom-xl">
+                  <img 
+                    src={profileImage} 
+                    alt="Michael Kariuki" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
 
