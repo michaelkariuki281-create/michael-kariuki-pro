@@ -1,13 +1,14 @@
 import { Helmet } from "react-helmet-async";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, MessageCircle } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -30,30 +31,50 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const { data, error } = await supabase.functions.invoke('send-contact-message', {
+        body: formData,
+      });
 
-    toast({
-      title: "Message sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
+      if (error) throw error;
 
-    setFormData({ name: "", email: "", subject: "", message: "" });
-    setIsSubmitting(false);
+      toast({
+        title: "Message sent!",
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
+
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error: any) {
+      console.error("Error sending message:", error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again or use WhatsApp.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleWhatsApp = () => {
+    const message = encodeURIComponent(
+      `Hi Michael, my name is ${formData.name || '[Your Name]'}.\n\nSubject: ${formData.subject || '[Subject]'}\n\n${formData.message || '[Your Message]'}`
+    );
+    window.open(`https://wa.me/254717023526?text=${message}`, '_blank');
   };
 
   const contactInfo = [
     {
       icon: Mail,
       label: "Email",
-      value: "hello@michaelkariuki.com",
-      href: "mailto:hello@michaelkariuki.com",
+      value: "michaelkariuki281@gmail.com",
+      href: "mailto:michaelkariuki281@gmail.com",
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+254 700 000 000",
-      href: "tel:+254700000000",
+      value: "0717 023 526",
+      href: "tel:+254717023526",
     },
     {
       icon: MapPin,
@@ -230,21 +251,33 @@ const Contact = () => {
                     />
                   </div>
 
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="w-full"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      "Sending..."
-                    ) : (
-                      <>
-                        Send Message
-                        <Send className="ml-2 w-4 h-4" />
-                      </>
-                    )}
-                  </Button>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="flex-1"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        "Sending..."
+                      ) : (
+                        <>
+                          Send via Email
+                          <Send className="ml-2 w-4 h-4" />
+                        </>
+                      )}
+                    </Button>
+                    <Button
+                      type="button"
+                      size="lg"
+                      variant="outline"
+                      className="flex-1 bg-green-600 hover:bg-green-700 text-white border-green-600"
+                      onClick={handleWhatsApp}
+                    >
+                      <MessageCircle className="mr-2 w-4 h-4" />
+                      Send via WhatsApp
+                    </Button>
+                  </div>
                 </form>
               </motion.div>
             </div>
