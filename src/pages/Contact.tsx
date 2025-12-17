@@ -29,11 +29,46 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const trimmed = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      subject: formData.subject.trim(),
+      message: formData.message.trim(),
+    };
+
+    if (trimmed.name.length < 2) {
+      toast({
+        title: "Name too short",
+        description: "Please enter at least 2 characters.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (trimmed.subject.length < 3) {
+      toast({
+        title: "Subject too short",
+        description: "Please enter at least 3 characters.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (trimmed.message.length < 10) {
+      toast({
+        title: "Message too short",
+        description: "Please enter at least 10 characters.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke('send-contact-message', {
-        body: formData,
+      const { error } = await supabase.functions.invoke("send-contact-message", {
+        body: trimmed,
       });
 
       if (error) throw error;
@@ -48,7 +83,8 @@ const Contact = () => {
       console.error("Error sending message:", error);
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again or use WhatsApp.",
+        description:
+          "Failed to send message. Please try again or use WhatsApp.",
         variant: "destructive",
       });
     } finally {
@@ -247,8 +283,10 @@ const Contact = () => {
                       rows={6}
                       value={formData.message}
                       onChange={handleChange}
+                      minLength={10}
                       required
                     />
+                    <p className="text-sm text-muted-foreground">Minimum 10 characters.</p>
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-4">
