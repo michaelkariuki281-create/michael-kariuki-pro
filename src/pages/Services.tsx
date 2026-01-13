@@ -29,7 +29,7 @@ const services = [
       "Clean, maintainable code",
       "Cross-browser compatibility",
     ],
-    price: "From $500",
+    price: "From Ks 50,000",
   },
   {
     icon: Smartphone,
@@ -43,7 +43,7 @@ const services = [
       "Optimized for all screen sizes",
       "Tested across devices",
     ],
-    price: "From $400",
+    price: "From Ks 40,000",
   },
   {
     icon: Globe,
@@ -57,7 +57,7 @@ const services = [
       "SEO-friendly structure",
       "Fast loading performance",
     ],
-    price: "From $600",
+    price: "From Ks 60,000",
   },
   {
     icon: Zap,
@@ -71,7 +71,7 @@ const services = [
       "Loading speed improvements",
       "Core Web Vitals optimization",
     ],
-    price: "From $300",
+    price: "From Ks 30,000",
   },
   {
     icon: Settings,
@@ -85,7 +85,7 @@ const services = [
       "Performance monitoring",
       "Priority support",
     ],
-    price: "From $100/mo",
+    price: "From Ks 10,000/mo",
   },
   {
     icon: Palette,
@@ -99,7 +99,7 @@ const services = [
       "Accessible design standards",
       "Interactive prototypes",
     ],
-    price: "From $400",
+    price: "From Ks 40,000",
   },
 ];
 
