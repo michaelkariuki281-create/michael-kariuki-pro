@@ -52,8 +52,8 @@ const Header = () => {
         <nav className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <span className="font-display text-2xl font-semibold text-foreground">
-              Michael<span className="text-accent">.</span>
+            <span className="font-display text-2xl font-semibold text-white">
+              Michael<span className="text-purple-400">.</span>
             </span>
           </Link>
 
@@ -65,17 +65,17 @@ const Header = () => {
                 to={link.path}
                 className={`relative inline-block px-4 py-2 rounded-lg border overflow-hidden transition-all duration-500 z-[1] group ${
                   isActive(link.path)
-                    ? "border-accent text-accent"
-                    : "border-[#03045e] dark:border-accent/50"
+                    ? "border-purple-400 text-purple-400"
+                    : "border-purple-500/40"
                 }`}
               >
                 {/* Skew background effects */}
-                <span className="absolute top-0 -left-[10px] w-0 h-full bg-[#240046] dark:bg-accent/80 skew-x-[15deg] transition-all duration-500 -z-[1] group-hover:w-[58%]" />
-                <span className="absolute top-0 -right-[10px] w-0 h-full bg-[#5a189a] dark:bg-accent skew-x-[15deg] transition-all duration-500 -z-[1] group-hover:w-[58%]" />
+                <span className="absolute top-0 -left-[10px] w-0 h-full bg-purple-900/80 skew-x-[15deg] transition-all duration-500 -z-[1] group-hover:w-[58%]" />
+                <span className="absolute top-0 -right-[10px] w-0 h-full bg-purple-700/80 skew-x-[15deg] transition-all duration-500 -z-[1] group-hover:w-[58%]" />
                 <span className={`text-sm font-medium transition-colors duration-300 ${
                   isActive(link.path) 
-                    ? "text-accent" 
-                    : "text-[#03045e] dark:text-foreground group-hover:text-[#e0aaff] dark:group-hover:text-white"
+                    ? "text-purple-400" 
+                    : "text-gray-200 group-hover:text-white"
                 }`}>
                   {link.name}
                 </span>
@@ -87,19 +87,19 @@ const Header = () => {
           <div className="hidden md:flex items-center gap-4">
             <button
               onClick={() => setIsDark(!isDark)}
-              className="p-2 rounded-full hover:bg-secondary transition-colors"
+              className="p-2 rounded-full hover:bg-purple-500/20 transition-colors"
               aria-label="Toggle theme"
             >
               {isDark ? (
-                <Sun className="w-5 h-5 text-foreground" />
+                <Sun className="w-5 h-5 text-yellow-300" />
               ) : (
-                <Moon className="w-5 h-5 text-foreground" />
+                <Moon className="w-5 h-5 text-purple-300" />
               )}
             </button>
             {/* 3D Push Button - Hire Me */}
             <Link
               to="/contact"
-              className="inline-block px-5 py-2.5 text-sm font-bold text-white bg-[#6c5ce7] rounded-md shadow-[0px_5px_0px_0px_#a29bfe] transition-all duration-100 active:translate-y-[5px] active:shadow-[0px_0px_0px_0px_#a29bfe] hover:bg-[#5b4cdb]"
+              className="inline-block px-5 py-2.5 text-sm font-bold text-white bg-purple-600 rounded-md shadow-[0px_5px_0px_0px_#a855f7] transition-all duration-100 active:translate-y-[5px] active:shadow-[0px_0px_0px_0px_#a855f7] hover:bg-purple-500"
             >
               Hire Me
             </Link>
@@ -109,13 +109,13 @@ const Header = () => {
           <div className="flex md:hidden items-center gap-4">
             <button
               onClick={() => setIsDark(!isDark)}
-              className="p-2 rounded-full hover:bg-secondary transition-colors"
+              className="p-2 rounded-full hover:bg-purple-500/20 transition-colors"
               aria-label="Toggle theme"
             >
               {isDark ? (
-                <Sun className="w-5 h-5 text-foreground" />
+                <Sun className="w-5 h-5 text-yellow-300" />
               ) : (
-                <Moon className="w-5 h-5 text-foreground" />
+                <Moon className="w-5 h-5 text-purple-300" />
               )}
             </button>
             <button
@@ -124,9 +124,9 @@ const Header = () => {
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
-                <X className="w-6 h-6 text-foreground" />
+                <X className="w-6 h-6 text-white" />
               ) : (
-                <Menu className="w-6 h-6 text-foreground" />
+                <Menu className="w-6 h-6 text-white" />
               )}
             </button>
           </div>
@@ -139,7 +139,7 @@ const Header = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden overflow-hidden bg-background border-t border-border"
+              className="md:hidden overflow-hidden bg-[#0a0a1a]/95 backdrop-blur-md border-t border-purple-500/20"
             >
               <div className="py-4 space-y-2">
                 {navLinks.map((link) => (
@@ -148,8 +148,8 @@ const Header = () => {
                     to={link.path}
                     className={`block px-4 py-3 text-sm font-medium transition-colors ${
                       isActive(link.path)
-                        ? "text-accent bg-secondary"
-                        : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                        ? "text-purple-400 bg-purple-500/20"
+                        : "text-gray-300 hover:text-white hover:bg-purple-500/10"
                     }`}
                   >
                     {link.name}
@@ -158,7 +158,7 @@ const Header = () => {
                 <div className="px-4 pt-4">
                   <Link
                     to="/contact"
-                    className="block w-full text-center px-5 py-2.5 text-sm font-bold text-white bg-[#6c5ce7] rounded-md shadow-[0px_5px_0px_0px_#a29bfe] transition-all duration-100 active:translate-y-[5px] active:shadow-[0px_0px_0px_0px_#a29bfe]"
+                    className="block w-full text-center px-5 py-2.5 text-sm font-bold text-white bg-purple-600 rounded-md shadow-[0px_5px_0px_0px_#a855f7] transition-all duration-100 active:translate-y-[5px] active:shadow-[0px_0px_0px_0px_#a855f7]"
                   >
                     Hire Me
                   </Link>
