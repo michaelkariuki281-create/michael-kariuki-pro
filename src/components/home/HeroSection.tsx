@@ -1,10 +1,25 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import profileImage from "@/assets/michael-profile.jpg";
 
 const HeroSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Parallax transforms for background elements
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const orbY1 = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const orbY2 = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const orbY3 = useTransform(scrollYProgress, [0, 1], ["0%", "60%"]);
+  const starsY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -42,7 +57,58 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-[90vh] flex items-center overflow-hidden">
+      {/* Parallax Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Gradient overlay */}
+        <motion.div 
+          style={{ y: bgY, opacity }}
+          className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-transparent to-transparent"
+        />
+        
+        {/* Floating orbs with parallax */}
+        <motion.div
+          style={{ y: orbY1 }}
+          className="absolute top-20 left-[10%] w-72 h-72 rounded-full bg-purple-500/10 blur-3xl"
+        />
+        <motion.div
+          style={{ y: orbY2 }}
+          className="absolute top-40 right-[15%] w-96 h-96 rounded-full bg-violet-500/10 blur-3xl"
+        />
+        <motion.div
+          style={{ y: orbY3 }}
+          className="absolute bottom-20 left-[30%] w-80 h-80 rounded-full bg-indigo-500/10 blur-3xl"
+        />
+        
+        {/* Animated stars/particles */}
+        <motion.div style={{ y: starsY }} className="absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-purple-300/40 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                opacity: [0.2, 0.8, 0.2],
+                scale: [1, 1.5, 1],
+              }}
+              transition={{
+                duration: 2 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            />
+          ))}
+        </motion.div>
+        
+        {/* Grid pattern */}
+        <motion.div 
+          style={{ y: bgY, opacity }}
+          className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.03)_1px,transparent_1px)] bg-[size:50px_50px]"
+        />
+      </div>
 
       <div className="container-custom relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
