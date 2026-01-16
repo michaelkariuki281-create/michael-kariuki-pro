@@ -5,17 +5,57 @@ import { Button } from "@/components/ui/button";
 import profileImage from "@/assets/michael-profile.jpg";
 
 const HeroSection = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.8, rotate: -5 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      rotate: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden">
 
       <div className="container-custom relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Content */}
-          <div className="space-y-8">
+          <motion.div
+            className="space-y-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              variants={itemVariants}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20"
             >
               <Sparkles className="w-4 h-4 text-accent" />
@@ -25,9 +65,7 @@ const HeroSection = () => {
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              variants={itemVariants}
               className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-foreground leading-[1.1]"
             >
               Michael<br />
@@ -35,9 +73,7 @@ const HeroSection = () => {
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              variants={itemVariants}
               className="text-lg md:text-xl text-muted-foreground max-w-lg"
             >
               Web Developer building fast, responsive, and user-focused websites 
@@ -45,9 +81,7 @@ const HeroSection = () => {
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4"
             >
               {/* 3D Push Button - Hire Me */}
@@ -65,37 +99,76 @@ const HeroSection = () => {
 
             {/* Stats */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+              variants={itemVariants}
               className="flex gap-8 pt-8 border-t border-border"
             >
               <div>
-                <p className="font-display text-3xl font-semibold text-foreground">1</p>
+                <motion.p 
+                  className="font-display text-3xl font-semibold text-foreground"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.6 }}
+                >
+                  1
+                </motion.p>
                 <p className="text-sm text-muted-foreground">Year Experience</p>
               </div>
               <div>
-                <p className="font-display text-3xl font-semibold text-foreground">1</p>
+                <motion.p 
+                  className="font-display text-3xl font-semibold text-foreground"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.7 }}
+                >
+                  1
+                </motion.p>
                 <p className="text-sm text-muted-foreground">Project & Growing</p>
               </div>
             </motion.div>
-          </div>
+          </motion.div>
 
           {/* Visual Element */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            variants={imageVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
             className="relative hidden lg:block"
           >
             <div className="relative aspect-square max-w-lg mx-auto">
               {/* Decorative circles */}
-              <div className="absolute inset-0 rounded-full border-2 border-dashed border-accent/20 animate-[spin_30s_linear_infinite]" />
-              <div className="absolute inset-8 rounded-full border-2 border-accent/10" />
-              <div className="absolute inset-16 rounded-full bg-accent/5" />
+              <motion.div 
+                className="absolute inset-0 rounded-full border-2 border-dashed border-accent/20 animate-[spin_30s_linear_infinite]"
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.2 }}
+              />
+              <motion.div 
+                className="absolute inset-8 rounded-full border-2 border-accent/10"
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.3 }}
+              />
+              <motion.div 
+                className="absolute inset-16 rounded-full bg-accent/5"
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.4 }}
+              />
               
               {/* Profile Image */}
-              <div className="absolute inset-0 flex items-center justify-center">
+              <motion.div 
+                className="absolute inset-0 flex items-center justify-center"
+                initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
+                whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+              >
                 <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-accent shadow-custom-xl">
                   <img 
                     src={profileImage} 
@@ -103,26 +176,35 @@ const HeroSection = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-              </div>
+              </motion.div>
 
               {/* Floating Elements */}
               <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
                 animate={{ y: [-10, 10, -10] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute top-20 right-0 px-4 py-2 bg-card rounded-lg shadow-custom-lg border border-border"
               >
                 <span className="text-sm font-medium">HTML5</span>
               </motion.div>
               <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.6 }}
                 animate={{ y: [10, -10, 10] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute bottom-20 left-0 px-4 py-2 bg-card rounded-lg shadow-custom-lg border border-border"
               >
                 <span className="text-sm font-medium">JavaScript</span>
               </motion.div>
               <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.7 }}
                 animate={{ y: [-5, 15, -5] }}
-                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute bottom-32 right-8 px-4 py-2 bg-card rounded-lg shadow-custom-lg border border-border"
               >
                 <span className="text-sm font-medium">CSS3</span>
