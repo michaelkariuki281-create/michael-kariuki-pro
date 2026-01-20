@@ -7,6 +7,15 @@ import SectionHeading from "@/components/ui/SectionHeading";
 const projects = [
   {
     id: 1,
+    title: "RentFlow",
+    category: "Full-Stack Development",
+    description: "A comprehensive property management system for landlords to track rentals, tenants, and payments.",
+    tags: ["React", "TypeScript", "Supabase"],
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
+    liveUrl: "https://rentflow.work/",
+  },
+  {
+    id: 2,
     title: "E-Commerce Platform",
     category: "Front-End Development",
     description: "A fully responsive e-commerce website with modern UI/UX, optimized for conversions and mobile users.",
@@ -14,7 +23,7 @@ const projects = [
     image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?w=800&q=80",
   },
   {
-    id: 2,
+    id: 3,
     title: "SaaS Dashboard",
     category: "Web Application",
     description: "Interactive analytics dashboard featuring real-time data visualization and intuitive navigation.",
@@ -22,7 +31,7 @@ const projects = [
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
   },
   {
-    id: 3,
+    id: 4,
     title: "Corporate Website",
     category: "Business Website",
     description: "Professional corporate website with emphasis on brand identity, accessibility, and performance.",

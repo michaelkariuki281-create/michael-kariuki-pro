@@ -8,6 +8,21 @@ import CTASection from "@/components/home/CTASection";
 const projects = [
   {
     id: 1,
+    title: "RentFlow",
+    category: "Full-Stack Development",
+    client: "Personal Project",
+    description: "A comprehensive property management system for landlords and property managers to track rentals, tenants, and payments efficiently.",
+    objective: "Build a modern, user-friendly property management platform that simplifies rental operations and tenant management.",
+    role: "Full-Stack Developer",
+    tools: ["React", "TypeScript", "Supabase", "Tailwind CSS"],
+    timeline: "Ongoing",
+    outcome: "Live production application helping property managers streamline their workflow.",
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
+    featured: true,
+    liveUrl: "https://rentflow.work/",
+  },
+  {
+    id: 2,
     title: "E-Commerce Platform",
     category: "Front-End Development",
     client: "TechRetail Co.",
@@ -21,7 +36,7 @@ const projects = [
     featured: true,
   },
   {
-    id: 2,
+    id: 3,
     title: "SaaS Analytics Dashboard",
     category: "Web Application",
     client: "DataViz Inc.",
@@ -35,7 +50,7 @@ const projects = [
     featured: true,
   },
   {
-    id: 3,
+    id: 4,
     title: "Corporate Website Redesign",
     category: "Business Website",
     client: "GlobalTech Solutions",
@@ -49,7 +64,7 @@ const projects = [
     featured: true,
   },
   {
-    id: 4,
+    id: 5,
     title: "Portfolio Website",
     category: "Personal Branding",
     client: "Creative Professional",
@@ -63,7 +78,7 @@ const projects = [
     featured: false,
   },
   {
-    id: 5,
+    id: 6,
     title: "Restaurant Website",
     category: "Business Website",
     client: "Urban Bistro",
@@ -77,7 +92,7 @@ const projects = [
     featured: false,
   },
   {
-    id: 6,
+    id: 7,
     title: "Non-Profit Organization Site",
     category: "Non-Profit",
     client: "Community Foundation",
