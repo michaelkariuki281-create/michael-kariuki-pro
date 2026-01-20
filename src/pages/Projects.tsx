@@ -209,7 +209,7 @@ const Projects = () => {
                         </div>
                       </div>
 
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-2 mb-6">
                         {project.tools.map((tool) => (
                           <span
                             key={tool}
@@ -219,6 +219,18 @@ const Projects = () => {
                           </span>
                         ))}
                       </div>
+
+                      {project.liveUrl && (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-foreground rounded-lg font-medium text-sm hover:bg-accent/90 transition-colors"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          View Live Site
+                        </a>
+                      )}
                     </div>
                   </motion.article>
                 ))}
