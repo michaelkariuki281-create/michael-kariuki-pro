@@ -110,7 +110,7 @@ const FeaturedProjects = () => {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm text-accent font-medium hover:underline"
+                    className="inline-flex items-center gap-2 text-sm text-accent font-medium transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_rgba(139,92,246,0.6)]"
                   >
                     <ExternalLink className="w-4 h-4" />
                     View Live Site
