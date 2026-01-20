@@ -68,18 +68,25 @@ const FeaturedProjects = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group"
             >
-              <Link to="/projects" className="block">
+              <div className="block">
                 <div className="relative overflow-hidden rounded-xl bg-secondary aspect-[4/3] mb-5">
                   <img
                     src={project.image}
                     alt={project.title}
                     className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="p-3 rounded-full bg-accent text-accent-foreground">
-                      <ExternalLink className="w-5 h-5" />
+                  {project.liveUrl && (
+                    <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-3 rounded-full bg-accent text-accent-foreground hover:scale-110 transition-transform"
+                      >
+                        <ExternalLink className="w-5 h-5" />
+                      </a>
                     </div>
-                  </div>
+                  )}
                 </div>
                 <span className="text-sm text-accent font-medium">{project.category}</span>
                 <h3 className="font-display text-xl font-semibold text-foreground mt-1 mb-2 group-hover:text-accent transition-colors">
@@ -88,7 +95,7 @@ const FeaturedProjects = () => {
                 <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
@@ -98,7 +105,18 @@ const FeaturedProjects = () => {
                     </span>
                   ))}
                 </div>
-              </Link>
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm text-accent font-medium hover:underline"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    View Live Site
+                  </a>
+                )}
+              </div>
             </motion.article>
           ))}
         </div>
