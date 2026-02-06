@@ -162,7 +162,7 @@ function initContactForm() {
             
             const whatsappMessage = `Hello Michael! My name is ${name}.\n\nSubject: ${subject}\n\n${message}`;
             const encodedMessage = encodeURIComponent(whatsappMessage);
-            const phoneNumber = '254700000000'; // Replace with actual number
+            const phoneNumber = '254717023526';
             
             window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
         });
