@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Github, Linkedin, Facebook, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -7,7 +7,6 @@ const Footer = () => {
   const socialLinks = [
     { icon: Github, href: "#", label: "GitHub" },
     { icon: Linkedin, href: "https://www.linkedin.com/in/michael-kariuki", label: "LinkedIn" },
-    { icon: Facebook, href: "https://www.facebook.com/unk.wn.ne.ke?mibextid=rS40aB7S9Ucbxw6v", label: "Facebook" },
     { icon: Mail, href: "mailto:michaelkariuki281@gmail.com", label: "Email" },
   ];
 
