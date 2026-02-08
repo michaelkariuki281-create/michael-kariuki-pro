@@ -1,9 +1,8 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import profileImage from "@/assets/michael-profile.jpg";
 
 const HeroSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -235,12 +234,8 @@ const HeroSection = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
               >
-                <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-accent shadow-custom-xl">
-                  <img 
-                    src={profileImage} 
-                    alt="Michael Kariuki" 
-                    className="w-full h-full object-cover"
-                  />
+                <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-accent shadow-custom-xl bg-accent/10 flex items-center justify-center">
+                  <User className="w-20 h-20 text-accent/60" />
                 </div>
               </motion.div>
 
