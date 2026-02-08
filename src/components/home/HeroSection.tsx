@@ -201,7 +201,7 @@ const HeroSection = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="relative hidden lg:block"
+            className="relative"
           >
             <div className="relative aspect-square max-w-lg mx-auto">
               {/* Decorative circles */}
