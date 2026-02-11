@@ -1,7 +1,9 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Sparkles, User } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import profileImage from "@/assets/michael-profile.jpg";
 import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
@@ -234,9 +236,10 @@ const HeroSection = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
               >
-                <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-accent shadow-custom-xl bg-accent/10 flex items-center justify-center">
-                  <User className="w-20 h-20 text-accent/60" />
-                </div>
+                <Avatar className="w-48 h-48 border-4 border-accent shadow-custom-xl">
+                  <AvatarImage src={profileImage} alt="Michael Kariuki" className="object-cover" />
+                  <AvatarFallback className="text-4xl font-semibold bg-accent/10 text-accent">MK</AvatarFallback>
+                </Avatar>
               </motion.div>
 
               {/* Floating Elements */}
